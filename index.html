@@ -33,9 +33,11 @@ rel="stylesheet">
 }
 
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
+
 }
 
 html,
@@ -50,8 +52,7 @@ font-family:
 'Poppins',
 sans-serif;
 
-background:
-#ffe4ec;
+background:#ffe4ec;
 
 }
 
@@ -290,55 +291,51 @@ var(--shadow);
 }
 
 /* =========================
-TOP BUTTONS
+ACTION BUTTONS
 ========================= */
 
-.save-btn,
-.lock-btn,
-.export-btn,
-.import-btn{
+.action-bar{
 
 position:fixed;
 
-right:15px;
+right:20px;
+bottom:20px;
+
+display:flex;
+
+gap:10px;
 
 z-index:9999;
 
+}
+
+.action-btn{
+
+width:55px;
+height:55px;
+
 border:none;
 
-padding:12px 15px;
+border-radius:50%;
 
-border-radius:12px;
+background:var(--pink);
 
 color:white;
 
-}
+font-size:20px;
 
-.save-btn{
+cursor:pointer;
 
-top:15px;
-background:var(--pink-dark);
+box-shadow:
+var(--shadow);
 
-}
-
-.lock-btn{
-
-top:65px;
-background:var(--purple);
+transition:.3s;
 
 }
 
-.export-btn{
+.action-btn:hover{
 
-top:115px;
-background:var(--teal);
-
-}
-
-.import-btn{
-
-top:165px;
-background:var(--blue);
+transform:scale(1.08);
 
 }
 
@@ -359,14 +356,18 @@ border:none;
 
 border-radius:50%;
 
-background:
-var(--pink);
+background:var(--pink);
 
 color:white;
 
 font-size:22px;
 
+cursor:pointer;
+
 z-index:9999;
+
+box-shadow:
+var(--shadow);
 
 }
 
@@ -378,29 +379,29 @@ left:15px;
 
 .next-btn{
 
-right:90px;
+right:15px;
 
 }
 
-/* AFTER FINALIZE */
+/* FINALIZED VIEW */
 
-.viewer-nav{
+.viewer-prev{
 
 top:auto !important;
 
 bottom:20px !important;
 
-}
-
-.viewer-prev{
-
-left:25% !important;
+left:20px !important;
 
 }
 
 .viewer-next{
 
-right:25% !important;
+top:auto !important;
+
+bottom:20px !important;
+
+right:20px !important;
 
 }
 
@@ -422,12 +423,13 @@ border:none;
 
 border-radius:50%;
 
-background:
-var(--pink);
+background:var(--pink);
 
 color:white;
 
 font-size:24px;
+
+cursor:pointer;
 
 z-index:9999;
 
@@ -476,8 +478,7 @@ border:none;
 
 border-radius:10px;
 
-background:
-var(--pink);
+background:var(--pink);
 
 color:white;
 
@@ -498,7 +499,7 @@ width:100%;
 }
 
 /* =========================
-TIMELINE PAGE
+TIMELINE INTRO PAGE
 ========================= */
 
 .timeline-container{
@@ -576,7 +577,9 @@ appear .8s forwards;
 to{
 
 opacity:1;
-transform:translateY(0);
+
+transform:
+translateY(0);
 
 }
 
@@ -592,12 +595,13 @@ border:none;
 
 border-radius:15px;
 
-background:
-var(--pink);
+background:var(--pink);
 
 color:white;
 
 font-size:18px;
+
+cursor:pointer;
 
 }
 
@@ -695,6 +699,22 @@ width:200px;
 
 }
 
+.action-bar{
+
+right:10px;
+bottom:10px;
+
+gap:6px;
+
+}
+
+.action-btn{
+
+width:50px;
+height:50px;
+
+}
+
 }
 
 </style>
@@ -703,10 +723,35 @@ width:200px;
 
 <body>
 
-<button class="save-btn" id="saveBtn">💾 Save</button>
-<button class="lock-btn" id="lockBtn">🔒 Finalize</button>
-<button class="export-btn" id="exportBtn">📤 Export</button>
-<button class="import-btn" id="importBtn">📥 Import</button>
+<div
+class="action-bar"
+id="actionBar">
+
+<button
+class="action-btn"
+id="saveBtn">
+💾
+</button>
+
+<button
+class="action-btn"
+id="lockBtn">
+🔒
+</button>
+
+<button
+class="action-btn"
+id="exportBtn">
+📤
+</button>
+
+<button
+class="action-btn"
+id="importBtn">
+📥
+</button>
+
+</div>
 
 <input
 type="file"
@@ -714,10 +759,21 @@ id="importFile"
 accept=".json"
 hidden>
 
-<button class="nav-btn prev-btn" id="prevBtn">❮</button>
-<button class="nav-btn next-btn" id="nextBtn">❯</button>
+<button
+class="nav-btn prev-btn"
+id="prevBtn">
+❮
+</button>
 
-<button class="editor-toggle" id="editorToggle">
+<button
+class="nav-btn next-btn"
+id="nextBtn">
+❯
+</button>
+
+<button
+class="editor-toggle"
+id="editorToggle">
 ⚙️
 </button>
 
@@ -730,12 +786,14 @@ Scrapbook Editor
 </h3>
 
 <label>
+
 <input
 type="checkbox"
 id="editMode"
 checked>
 
 Edit Mode
+
 </label>
 
 <button id="uploadBgBtn">
@@ -788,7 +846,8 @@ hidden>
 class="page active"
 id="timelinePage">
 
-<div class="timeline-container">
+<div
+class="timeline-container">
 
 <h1 class="timeline-title">
 Our Journey So Far ❤️
@@ -829,8 +888,6 @@ id="startBookBtn">
 Begin Our Scrapbook ❤️
 
 </button>
-
-</div>
 
 </div>
 <!-- PAGE 1 : WELCOME -->
@@ -1120,6 +1177,7 @@ of how much you mean to me.
 </div>
 
 </div>
+
 <script>
 
 /* =====================================
@@ -1150,7 +1208,7 @@ blur:0
 });
 
 /* =====================================
-   START SCRAPBOOK
+   START BUTTON
 ===================================== */
 
 document
@@ -1241,7 +1299,7 @@ prevPage
 );
 
 /* =====================================
-   NAVIGATION BUTTONS
+   SHOW / HIDE NAV BUTTONS
 ===================================== */
 
 function updateNavButtons(){
@@ -1323,7 +1381,7 @@ prevPage();
 }
 
 /* =====================================
-   EDITOR TOGGLE
+   COLLAPSIBLE EDITOR
 ===================================== */
 
 const editorPanel =
@@ -1507,13 +1565,11 @@ selectedPhoto.innerHTML=
 
 <div class="photo-controls">
 
-<button
-onclick="replacePhoto(this)">
+<button onclick="replacePhoto(this)">
 Replace
 </button>
 
-<button
-onclick="removePhoto(this)">
+<button onclick="removePhoto(this)">
 Delete
 </button>
 
@@ -1563,7 +1619,7 @@ btn
 .closest(
 ".photo-slot"
 )
-.innerHTML = "";
+.innerHTML="";
 
 saveAll();
 
@@ -1649,7 +1705,7 @@ saveAll();
 );
 
 /* =====================================
-   TRANSPARENCY
+   OPACITY
 ===================================== */
 
 document
@@ -1767,7 +1823,6 @@ document
 settings.blur;
 
 }
-
 /* =====================================
    SAVE SYSTEM
 ===================================== */
@@ -2019,7 +2074,6 @@ collectProjectData();
 
 const blob =
 new Blob(
-
 [
 JSON.stringify(
 data,
@@ -2027,12 +2081,10 @@ null,
 2
 )
 ],
-
 {
 type:
 "application/json"
 }
-
 );
 
 const a =
@@ -2224,32 +2276,11 @@ document
 .style.display =
 "none";
 
-/* hide editing buttons */
+/* hide action buttons */
 
 document
 .getElementById(
-"saveBtn"
-)
-.style.display =
-"none";
-
-document
-.getElementById(
-"lockBtn"
-)
-.style.display =
-"none";
-
-document
-.getElementById(
-"exportBtn"
-)
-.style.display =
-"none";
-
-document
-.getElementById(
-"importBtn"
+"actionBar"
 )
 .style.display =
 "none";
@@ -2280,14 +2311,13 @@ control.style.display =
 
 });
 
-/* move nav buttons to bottom */
+/* move navigation buttons */
 
 document
 .getElementById(
 "prevBtn"
 )
 .classList.add(
-"viewer-nav",
 "viewer-prev"
 );
 
@@ -2296,14 +2326,13 @@ document
 "nextBtn"
 )
 .classList.add(
-"viewer-nav",
 "viewer-next"
 );
 
 }
 
 /* =====================================
-   EDIT MODE TOGGLE
+   EDIT MODE
 ===================================== */
 
 document
@@ -2359,7 +2388,6 @@ heart.className =
 "heart";
 
 const hearts =
-
 [
 "❤️",
 "💕",
@@ -2369,7 +2397,6 @@ const hearts =
 ];
 
 heart.innerHTML =
-
 hearts[
 Math.floor(
 Math.random() *
@@ -2442,3 +2469,4 @@ initialize();
 
 </body>
 </html>
+</div>
