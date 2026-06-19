@@ -33,11 +33,9 @@ rel="stylesheet">
 }
 
 *{
-
 margin:0;
 padding:0;
 box-sizing:border-box;
-
 }
 
 html,
@@ -93,7 +91,7 @@ from{
 opacity:0;
 
 transform:
-translateX(50px);
+translateX(40px);
 
 }
 
@@ -166,10 +164,10 @@ font-size:3.5rem;
 
 text-align:center;
 
+margin-bottom:25px;
+
 color:
 var(--pink-dark);
-
-margin-bottom:25px;
 
 }
 
@@ -203,10 +201,10 @@ position:relative;
 box-shadow:
 var(--shadow);
 
+transition:.3s;
+
 transform:
 rotate(-2deg);
-
-transition:.3s;
 
 }
 
@@ -275,13 +273,13 @@ height:70vh;
 
 padding:20px;
 
-border:none;
-
-border-radius:15px;
+font-size:16px;
 
 resize:none;
 
-font-size:16px;
+border:none;
+
+border-radius:15px;
 
 background:
 rgba(255,255,255,.92);
@@ -384,8 +382,30 @@ right:90px;
 
 }
 
+/* AFTER FINALIZE */
+
+.viewer-nav{
+
+top:auto !important;
+
+bottom:20px !important;
+
+}
+
+.viewer-prev{
+
+left:25% !important;
+
+}
+
+.viewer-next{
+
+right:25% !important;
+
+}
+
 /* =========================
-EDITOR TOGGLE
+EDITOR
 ========================= */
 
 .editor-toggle{
@@ -431,9 +451,9 @@ border-radius:15px;
 box-shadow:
 var(--shadow);
 
-z-index:9999;
-
 transition:.3s;
+
+z-index:9999;
 
 }
 
@@ -448,9 +468,9 @@ translateY(130%);
 
 width:100%;
 
-margin-top:6px;
-
 padding:10px;
+
+margin-top:6px;
 
 border:none;
 
@@ -478,7 +498,7 @@ width:100%;
 }
 
 /* =========================
-TIMELINE INTRO
+TIMELINE PAGE
 ========================= */
 
 .timeline-container{
@@ -509,12 +529,12 @@ cursive;
 
 font-size:4rem;
 
-color:
-var(--pink-dark);
-
 margin-bottom:30px;
 
 text-align:center;
+
+color:
+var(--pink-dark);
 
 }
 
@@ -675,17 +695,6 @@ width:200px;
 
 }
 
-.save-btn,
-.lock-btn,
-.export-btn,
-.import-btn{
-
-padding:10px;
-
-font-size:12px;
-
-}
-
 }
 
 </style>
@@ -694,29 +703,10 @@ font-size:12px;
 
 <body>
 
-<button
-class="save-btn"
-id="saveBtn">
-💾 Save
-</button>
-
-<button
-class="lock-btn"
-id="lockBtn">
-🔒 Finalize
-</button>
-
-<button
-class="export-btn"
-id="exportBtn">
-📤 Export
-</button>
-
-<button
-class="import-btn"
-id="importBtn">
-📥 Import
-</button>
+<button class="save-btn" id="saveBtn">💾 Save</button>
+<button class="lock-btn" id="lockBtn">🔒 Finalize</button>
+<button class="export-btn" id="exportBtn">📤 Export</button>
+<button class="import-btn" id="importBtn">📥 Import</button>
 
 <input
 type="file"
@@ -724,21 +714,10 @@ id="importFile"
 accept=".json"
 hidden>
 
-<button
-class="nav-btn prev-btn"
-id="prevBtn">
-❮
-</button>
+<button class="nav-btn prev-btn" id="prevBtn">❮</button>
+<button class="nav-btn next-btn" id="nextBtn">❯</button>
 
-<button
-class="nav-btn next-btn"
-id="nextBtn">
-❯
-</button>
-
-<button
-class="editor-toggle"
-id="editorToggle">
+<button class="editor-toggle" id="editorToggle">
 ⚙️
 </button>
 
@@ -751,14 +730,12 @@ Scrapbook Editor
 </h3>
 
 <label>
-
 <input
 type="checkbox"
 id="editMode"
 checked>
 
 Edit Mode
-
 </label>
 
 <button id="uploadBgBtn">
@@ -811,8 +788,7 @@ hidden>
 class="page active"
 id="timelinePage">
 
-<div
-class="timeline-container">
+<div class="timeline-container">
 
 <h1 class="timeline-title">
 Our Journey So Far ❤️
@@ -871,25 +847,25 @@ Happy 3rd Monthsary ❤️
 </h1>
 
 <div style="
-max-width:800px;
+max-width:850px;
 margin:auto;
 background:rgba(255,255,255,.92);
-padding:25px;
+padding:30px;
 border-radius:20px;
 box-shadow:var(--shadow);
 text-align:center;
-line-height:1.9;
+line-height:2;
 font-size:18px;
 ">
 
-Every memory with you has become one of my favorite memories.
+Every moment with you has become one of my favorite memories.
 
-This scrapbook is a collection of the moments,
-the laughter,
-the adventures,
-and the love we've shared throughout our journey.
+This scrapbook contains our laughter, adventures,
+late-night conversations, random pictures,
+and all the little things that made these
+three months unforgettable.
 
-Thank you for making every day feel special.
+Thank you for being part of my life.
 
 ❤️
 
@@ -909,7 +885,7 @@ Thank you for making every day feel special.
 <div class="page-content">
 
 <h1 class="page-title">
-Favorite Memories ❤️
+Favorite Memories 📸
 </h1>
 
 <div class="scrapbook-grid">
@@ -938,7 +914,7 @@ Favorite Memories ❤️
 <div class="page-content">
 
 <h1 class="page-title">
-Adventures Together ✨
+Our Adventures ✨
 </h1>
 
 <div class="scrapbook-grid">
@@ -972,7 +948,7 @@ Adventures Together ✨
 
 <textarea
 id="letterPage"
-placeholder="Write your heartfelt monthsary letter here...">
+placeholder="Write your monthsary message here...">
 </textarea>
 
 </div>
@@ -989,7 +965,7 @@ placeholder="Write your heartfelt monthsary letter here...">
 <div class="page-content">
 
 <h1 class="page-title">
-Our Photo Wall 📸
+Photo Wall ❤️
 </h1>
 
 <div class="scrapbook-grid">
@@ -1044,7 +1020,7 @@ placeholder="Write all the reasons why you love them...">
 <div class="page-content">
 
 <h1 class="page-title">
-Snapshots Together 🌸
+Special Moments 🌸
 </h1>
 
 <div class="scrapbook-grid">
@@ -1078,7 +1054,7 @@ Snapshots Together 🌸
 
 <textarea
 id="futurePlans"
-placeholder="Write your dreams, goals, future adventures, and plans together...">
+placeholder="Write your future goals, dreams, and plans together...">
 </textarea>
 
 </div>
@@ -1115,26 +1091,25 @@ Happy 3rd Monthsary ❤️
 </h1>
 
 <div style="
-max-width:800px;
+max-width:850px;
 background:rgba(255,255,255,.92);
 padding:30px;
 border-radius:20px;
 box-shadow:var(--shadow);
-line-height:1.9;
+line-height:2;
 font-size:18px;
 ">
 
-Thank you for being part of my life.
+Three months may seem short to some people,
+but every second with you has been special.
 
-Thank you for every memory,
-every laugh,
-every smile,
+Thank you for every smile,
+every memory,
+every late-night conversation,
 and every moment we've shared.
 
-This scrapbook is only a small reminder
+This scrapbook is a reminder
 of how much you mean to me.
-
-May we continue creating beautiful memories together.
 
 ❤️ Forever Us ❤️
 
@@ -1162,8 +1137,6 @@ let scrapbookLocked = false;
 
 const pageSettings = {};
 
-/* initialize settings */
-
 pages.forEach((page,index)=>{
 
 pageSettings[index] = {
@@ -1177,7 +1150,7 @@ blur:0
 });
 
 /* =====================================
-   START BUTTON
+   START SCRAPBOOK
 ===================================== */
 
 document
@@ -1210,7 +1183,7 @@ pages[index]
 "active"
 );
 
-currentPage=index;
+currentPage = index;
 
 loadBackground();
 
@@ -1250,21 +1223,25 @@ currentPage - 1
 }
 
 document
-.getElementById("nextBtn")
+.getElementById(
+"nextBtn"
+)
 .addEventListener(
 "click",
 nextPage
 );
 
 document
-.getElementById("prevBtn")
+.getElementById(
+"prevBtn"
+)
 .addEventListener(
 "click",
 prevPage
 );
 
 /* =====================================
-   NAVIGATION VISIBILITY
+   NAVIGATION BUTTONS
 ===================================== */
 
 function updateNavButtons(){
@@ -1286,7 +1263,7 @@ document
 .style.display =
 
 currentPage ===
-pages.length-1
+pages.length - 1
 ? "none"
 : "block";
 
@@ -1346,7 +1323,7 @@ prevPage();
 }
 
 /* =====================================
-   COLLAPSIBLE EDITOR
+   EDITOR TOGGLE
 ===================================== */
 
 const editorPanel =
@@ -1586,7 +1563,7 @@ btn
 .closest(
 ".photo-slot"
 )
-.innerHTML="";
+.innerHTML = "";
 
 saveAll();
 
@@ -1790,6 +1767,7 @@ document
 settings.blur;
 
 }
+
 /* =====================================
    SAVE SYSTEM
 ===================================== */
@@ -1852,7 +1830,7 @@ JSON.stringify(data)
 }
 
 /* =====================================
-   RESTORE DATA
+   RESTORE PROJECT
 ===================================== */
 
 function restoreProject(data){
@@ -1860,7 +1838,7 @@ function restoreProject(data){
 if(!data)
 return;
 
-/* PAGE SETTINGS */
+/* page settings */
 
 if(data.pageSettings){
 
@@ -1875,58 +1853,36 @@ data.pageSettings[key];
 
 }
 
-/* LETTER PAGE */
+/* text pages */
 
-if(
+const letter =
 document.getElementById(
 "letterPage"
-)
-){
+);
 
-document
-.getElementById(
-"letterPage"
-)
-.value =
+const reasons =
+document.getElementById(
+"reasonsPage"
+);
+
+const future =
+document.getElementById(
+"futurePlans"
+);
+
+if(letter)
+letter.value =
 data.letter || "";
 
-}
-
-/* REASONS PAGE */
-
-if(
-document.getElementById(
-"reasonsPage"
-)
-){
-
-document
-.getElementById(
-"reasonsPage"
-)
-.value =
+if(reasons)
+reasons.value =
 data.reasons || "";
 
-}
-
-/* FUTURE PAGE */
-
-if(
-document.getElementById(
-"futurePlans"
-)
-){
-
-document
-.getElementById(
-"futurePlans"
-)
-.value =
+if(future)
+future.value =
 data.future || "";
 
-}
-
-/* PHOTOS */
+/* photos */
 
 if(data.photos){
 
@@ -1950,20 +1906,20 @@ data.currentPage || 0;
 scrapbookLocked =
 data.scrapbookLocked || false;
 
+showPage(
+currentPage
+);
+
 if(scrapbookLocked){
 
 applyLockMode();
 
 }
 
-showPage(
-currentPage
-);
-
 }
 
 /* =====================================
-   LOAD LOCAL SAVE
+   LOAD LOCAL STORAGE
 ===================================== */
 
 function loadLocalSave(){
@@ -2047,7 +2003,7 @@ saveAll
 });
 
 /* =====================================
-   EXPORT PROJECT
+   EXPORT JSON
 ===================================== */
 
 document
@@ -2098,7 +2054,7 @@ a.click();
 );
 
 /* =====================================
-   IMPORT PROJECT
+   IMPORT JSON
 ===================================== */
 
 document
@@ -2227,7 +2183,7 @@ document
 
 const confirmLock =
 confirm(
-"Finalize scrapbook? Editing will be disabled."
+"Finalize scrapbook?"
 );
 
 if(
@@ -2251,6 +2207,8 @@ alert(
 
 function applyLockMode(){
 
+/* hide editor */
+
 document
 .getElementById(
 "editorPanel"
@@ -2266,6 +2224,38 @@ document
 .style.display =
 "none";
 
+/* hide editing buttons */
+
+document
+.getElementById(
+"saveBtn"
+)
+.style.display =
+"none";
+
+document
+.getElementById(
+"lockBtn"
+)
+.style.display =
+"none";
+
+document
+.getElementById(
+"exportBtn"
+)
+.style.display =
+"none";
+
+document
+.getElementById(
+"importBtn"
+)
+.style.display =
+"none";
+
+/* disable text editing */
+
 document
 .querySelectorAll(
 "textarea"
@@ -2276,6 +2266,8 @@ area.disabled =
 true;
 
 });
+
+/* hide photo controls */
 
 document
 .querySelectorAll(
@@ -2288,10 +2280,30 @@ control.style.display =
 
 });
 
+/* move nav buttons to bottom */
+
+document
+.getElementById(
+"prevBtn"
+)
+.classList.add(
+"viewer-nav",
+"viewer-prev"
+);
+
+document
+.getElementById(
+"nextBtn"
+)
+.classList.add(
+"viewer-nav",
+"viewer-next"
+);
+
 }
 
 /* =====================================
-   EDIT MODE
+   EDIT MODE TOGGLE
 ===================================== */
 
 document
@@ -2307,17 +2319,6 @@ this.checked;
 
 document
 .querySelectorAll(
-"textarea"
-)
-.forEach(area=>{
-
-area.disabled =
-!enabled;
-
-});
-
-document
-.querySelectorAll(
 ".photo-controls"
 )
 .forEach(control=>{
@@ -2326,6 +2327,17 @@ control.style.display =
 enabled
 ? "flex"
 : "none";
+
+});
+
+document
+.querySelectorAll(
+"textarea"
+)
+.forEach(area=>{
+
+area.disabled =
+!enabled;
 
 });
 
@@ -2350,8 +2362,8 @@ const hearts =
 
 [
 "❤️",
-"💖",
 "💕",
+"💖",
 "💘",
 "💗"
 ];
@@ -2379,7 +2391,7 @@ Math.random()*20
 heart.style.animationDuration =
 (
 8 +
-Math.random()*5
+Math.random()*6
 )
 + "s";
 
@@ -2402,7 +2414,7 @@ createHeart,
 );
 
 /* =====================================
-   INITIALIZATION
+   INITIALIZE
 ===================================== */
 
 async function initialize(){
